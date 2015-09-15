@@ -8,6 +8,22 @@ class Board
 		end
 	end
 
+	def print
+		output = "<table><tr>"
+		x = 0
+		@grid.each do |cell|
+			if x % 10 == 0
+				output += "</tr><tr>"
+				output += "<th> #{cell} </th>"
+				x += 1
+			else
+				output += "<th> #{cell} </th>"
+				x += 1
+			end
+		end
+		output += "</table>"
+	end
+
 	def place(ship, coord, orientation = :horizontally)
 		coords = [coord]
 		ship.size.times{coords << next_coord(coords.last, orientation)}
@@ -42,7 +58,7 @@ private
 	end
 
 	def is_a_ship?(cell)
-		cell.content.respond_to?(:sunk?) 
+		cell.content.respond_to?(:sunk?)
 	end
 
 	def any_coord_not_on_grid?(coords)
@@ -64,4 +80,3 @@ private
 	end
 
 end
-
