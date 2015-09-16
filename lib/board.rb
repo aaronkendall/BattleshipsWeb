@@ -9,19 +9,15 @@ class Board
 	end
 
 	def print
-		output = "<table><tr>"
-		x = 0
-		@grid.each do |cell|
-			if x % 10 == 0
-				output += "</tr><tr>"
-				output += "<th> #{cell} </th>"
-				x += 1
-			else
-				output += "<th> #{cell} </th>"
-				x += 1
-			end
+		output = "<div style = 'width: 700px; height: 650px;'>"
+		[*"A".."J"].each do |l|
+			[*1..10].each do |n|
+			output += "<div style = 'width: 65px; height 65px; display: inline-block;
+			border: 1px #FF0000 solid; padding: 0px; background-color: #aec6cf;'>
+			</div>"
 		end
-		output += "</table>"
+	end
+	output += "</div>"
 	end
 
 	def place(ship, coord, orientation = :horizontally)

@@ -1,1 +1,10 @@
-<%= @board.print %>
+<div style= 'width: 470px; height: 650px;'>
+    <% @board.grid.each do |cell| %>
+    <div style= 'width: 40px; height: 40px;
+        display: inline-block;
+        border: 1px rgb(89,89,89) solid;
+        padding: 0px;
+        background: #50A6C2;'>
+    </div>
+    <% end %>
+</div>

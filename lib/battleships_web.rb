@@ -20,6 +20,11 @@ class BattleshipsWeb < Sinatra::Base
     erb :new_game
   end
 
+  get '/test' do
+    @array = ["Nat", "Aaron", "Jesus"]
+    erb :test
+  end
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
