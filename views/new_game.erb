@@ -1,11 +1,20 @@
-<div style= 'width: 470px; height: 650px;'>
-  <% @board.place(@ship1, :A1, :vertically) %>
-  <% @board.place(@ship2, :C3, :horizontally) %>
-  <% @board.place(@ship3, :J1, :horizontally) %>
-  <% @board.place(@ship4, :E5, :vertically) %>
-  <% @board.place(@ship5, :A8, :vertically) %>
+<form action = '/full_board'>
+  Where do you want to place your ship?
+  <input type = "text" name = "coord" required>
+  Orientation of your ship?
+  <input type = "text" name = "orientation" required>
+  <input type = "submit" value = "Submit">
+</form>
 
-  <% @board.grid.each do |key, value| %>
+<div style= 'width: 470px; height: 650px;'>
+  <% # @board.place(@ship1, @coord, @orientation) %>
+  <% # @board.place(@ship2, :C3, :horizontally) %>
+  <% # @board.place(@ship3, :J1, :horizontally) %>
+  <% # @board.place(@ship4, :E5, :vertically) %>
+  <% # @board.place(@ship5, :A8, :vertically) %>
+  <% # @board.shoot_at(:A1) %>
+
+  <% $board.grid.each do |key, value| %>
     <% if value.content.is_a?(Ship) %>
       <div style= 'width: 40px; height: 40px;
           display: inline-block;
@@ -19,7 +28,7 @@
           display: inline-block;
           border: 1px rgb(89,89,89) solid;
           padding: 0px;
-          background-color: red;'>
+          background: #a6192e;'>
           <% key %>
       </div>
     <% else %>

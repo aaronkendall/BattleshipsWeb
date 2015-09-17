@@ -18,12 +18,19 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/new_game' do
-    @board = Board.new(Cell)
+    $board = Board.new(Cell)
+    erb :new_game
+  end
+
+  get '/full_board' do
     @ship1 = Ship.aircraft_carrier
     @ship2 = Ship.battleship
     @ship3 = Ship.destroyer
     @ship4 = Ship.submarine
     @ship5 = Ship.patrol_boat
+    @coord = params[:coord]
+    @orientation = params[:orientation]
+    $board.place(@ship1, @coord.to_sym, @orientation.to_sym)
     erb :new_game
   end
 
