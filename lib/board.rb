@@ -1,28 +1,20 @@
 class Board
 	attr_reader :grid
+	# include Display
 
-	def initialize(content)
+	def initialize(cell)
 		@grid = {}
 		[*"A".."J"].each do |l|
-			[*1..10].each {|n| @grid["#{l}#{n}".to_sym] = content.new}
-		end
-	end
-
-	def print
-		output = "<div style = 'width: 700px; height: 650px;'>"
-		[*"A".."J"].each do |l|
 			[*1..10].each do |n|
-			output += "<div style = 'width: 65px; height 65px; display: inline-block;
-			border: 1px #FF0000 solid; padding: 0px; background-color: #aec6cf;'>
-			</div>"
+				@grid["#{l}#{n}".to_sym] = cell.new
+				@grid["#{l}#{n}".to_sym].content = Water.new
+			end
 		end
 	end
-	output += "</div>"
-	end
 
-	def place(ship, coord, orientation = :horizontally)
+	def place(ship, coord, orientation)
 		coords = [coord]
-		ship.size.times{coords << next_coord(coords.last, orientation)}
+		(ship.size - 1).times{coords << next_coord(coords.last, orientation)}
 		put_on_grid_if_possible(coords, ship)
 	end
 

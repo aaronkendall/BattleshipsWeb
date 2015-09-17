@@ -1,6 +1,8 @@
 require 'sinatra/base'
+require_relative '../game_setup.rb'
 require_relative 'board.rb'
 require_relative 'cell.rb'
+require_relative 'ship.rb'
 
 class BattleshipsWeb < Sinatra::Base
 
@@ -16,7 +18,12 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/new_game' do
-    @board = Board.new(Class)
+    @board = Board.new(Cell)
+    @ship1 = Ship.aircraft_carrier
+    @ship2 = Ship.battleship
+    @ship3 = Ship.destroyer
+    @ship4 = Ship.submarine
+    @ship5 = Ship.patrol_boat
     erb :new_game
   end
 
